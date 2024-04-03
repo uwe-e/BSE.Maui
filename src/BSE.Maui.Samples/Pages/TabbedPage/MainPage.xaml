@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<bse:TabbedContainerPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:bse="clr-namespace:BSE.Maui.Controls;assembly=BSE.Maui.Controls"
+            xmlns:views="clr-namespace:BSE.Maui.Samples.Views"
+            x:Class="BSE.Maui.Samples.Pages.TabbedPage.MainPage"
+            Title="TabbedPage">
+
+    <NavigationPage Title="Tabbed">
+        <x:Arguments>
+            <views:Home/>
+        </x:Arguments>
+    </NavigationPage>
+    
+</bse:TabbedContainerPage>

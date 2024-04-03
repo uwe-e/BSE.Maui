@@ -6,7 +6,7 @@
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            MainPage = new BSE.Maui.Samples.Pages.TabbedPage.MainPage();
         }
     }
 }

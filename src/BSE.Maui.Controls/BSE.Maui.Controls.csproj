@@ -18,13 +18,29 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
+  
+   <PropertyGroup>
+		<_MauiTargetPlatformIdentifier>$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)'))</_MauiTargetPlatformIdentifier>
+		<_MauiTargetPlatformIsAndroid Condition="'$(_MauiTargetPlatformIdentifier)' == 'android'">True</_MauiTargetPlatformIsAndroid>
+  </PropertyGroup>
+
+  <ItemGroup Condition=" '$(_MauiTargetPlatformIsAndroid)' != 'True' ">
+    <Compile Remove="**\*.Android.cs" />
+    <None Include="**\*.Android.cs" />
+    <Compile Remove="**\Platform\Android\**\*.cs" />
+    <None Include="**\PlatformAndroid\**\*.cs" />
+  </ItemGroup>  
+  
+	<ItemGroup>
+	  <None Remove="Platforms\Android\Resources\layout\tabbedpagelayout.xml" />
+	</ItemGroup>
+
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Platforms\Android\" />
 	  <Folder Include="Platforms\iOS\" />
 	  <Folder Include="Platforms\MacCatalyst\" />
 	  <Folder Include="Platforms\Tizen\" />
