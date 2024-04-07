@@ -1,8 +1,6 @@
-﻿using Microsoft.Maui.Controls;
-
-namespace BSE.Maui.Controls
+﻿namespace BSE.Maui.Controls
 {
-    public partial class TabbedContainerPage : Microsoft.Maui.Controls.TabbedPage, IElementConfiguration<TabbedContainerPage>
+    public partial class TabbedContainerPage : TabbedPage, IElementConfiguration<TabbedContainerPage>, ITabbedContainerView
     {
         public static readonly BindableProperty BottomViewProperty
             = BindableProperty.Create(nameof(BottomView),
@@ -13,12 +11,13 @@ namespace BSE.Maui.Controls
 
         readonly Lazy<PlatformConfigurationRegistry<TabbedContainerPage>> _platformConfigurationRegistry;
 
-
         public ContentView BottomView
         {
             get { return (ContentView)GetValue(BottomViewProperty); }
             set { SetValue(BottomViewProperty, value); }
         }
+
+        public IView BottomContent => BottomView;
 
         public TabbedContainerPage()
         {
@@ -48,5 +47,6 @@ namespace BSE.Maui.Controls
         {
             return _platformConfigurationRegistry.Value.On<T>();
         }
+        
     }
 }

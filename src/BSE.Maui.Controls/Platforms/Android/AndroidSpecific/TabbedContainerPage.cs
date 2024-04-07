@@ -1,8 +1,8 @@
 ﻿using FormsElement = BSE.Maui.Controls.TabbedContainerPage;
 
-namespace BSE.Maui.Tabbed.Platforms.AndroidSpecific
+namespace BSE.Maui.Controls.Platforms.AndroidSpecific
 {
-    internal static class TabbedContainerPage
+    public static class TabbedContainerPage
     {
         public static readonly BindableProperty IsSwipePagingEnabledProperty =
             BindableProperty.Create("IsSwipePagingEnabled", typeof(bool),

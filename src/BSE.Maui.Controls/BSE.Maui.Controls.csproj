@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
@@ -21,14 +21,59 @@
   
    <PropertyGroup>
 		<_MauiTargetPlatformIdentifier>$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)'))</_MauiTargetPlatformIdentifier>
-		<_MauiTargetPlatformIsAndroid Condition="'$(_MauiTargetPlatformIdentifier)' == 'android'">True</_MauiTargetPlatformIsAndroid>
+     <!--<_MauiTargetPlatformIsAndroid>false</_MauiTargetPlatformIsAndroid>-->
+     <_MauiTargetPlatformIsAndroid Condition="'$(_MauiTargetPlatformIdentifier)' == 'android'">True</_MauiTargetPlatformIsAndroid>
+     <!--<_MauiTargetPlatformIsAndroid>false</_MauiTargetPlatformIsAndroid>-->
+     <_MauiTargetPlatformIsiOS Condition="'$(_MauiTargetPlatformIdentifier)' == 'ios'">True</_MauiTargetPlatformIsiOS>
+     <!--<_MauiTargetPlatformIsMacCatalyst>false</_MauiTargetPlatformIsMacCatalyst>-->
+     <_MauiTargetPlatformIsMacCatalyst Condition="'$(_MauiTargetPlatformIdentifier)' == 'maccatalyst'">True</_MauiTargetPlatformIsMacCatalyst>
+     
+     <_MauiTargetPlatformIsmacOS Condition="'$(_MauiTargetPlatformIdentifier)' == 'macos'">True</_MauiTargetPlatformIsmacOS>
+     <!--<_MauiTargetPlatformIsWindows>false</_MauiTargetPlatformIsWindows>-->
+     <_MauiTargetPlatformIsWindows Condition="'$(_MauiTargetPlatformIdentifier)' == 'windows'">True</_MauiTargetPlatformIsWindows>
   </PropertyGroup>
 
   <ItemGroup Condition=" '$(_MauiTargetPlatformIsAndroid)' != 'True' ">
     <Compile Remove="**\*.Android.cs" />
     <None Include="**\*.Android.cs" />
-    <Compile Remove="**\Platform\Android\**\*.cs" />
-    <None Include="**\PlatformAndroid\**\*.cs" />
+    <Compile Remove="**\Platforms\Android\**\*.cs" />
+    <None Include="**\Platforms\Android\**\*.cs" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(_MauiTargetPlatformIsiOS)' != 'True' AND '$(_MauiTargetPlatformIsMacCatalyst)' != 'True'">
+    <Compile Remove="**\*.iOS.cs" />
+    <None Include="**\*.iOS.cs" />
+    <Compile Remove="**\Platforms\iOS\**\*.cs" />
+    <None Include="**\Platforms\iOS\**\*.cs" />
+  </ItemGroup>
+  
+  <ItemGroup Condition=" '$(_MauiTargetPlatformIsMacCatalyst)' != 'True' ">
+    <Compile Remove="**\**\*.MacCatalyst.cs" />
+    <None Include="**\**\*.MacCatalyst.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+    <Compile Remove="**\MacCatalyst\**\*.cs" />
+    <None Include="**\MacCatalyst\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(_MauiTargetPlatformIsWindows)' != 'True' ">
+    <Compile Remove="**\*.Windows.cs" />
+    <None Include="**\*.Windows.cs" />
+    <Compile Remove="**\Platforms\Windows\**\*.cs" />
+    <None Include="**\Platforms\Windows\**\*.cs" />
+    <MauiXaml Remove="**\Platforms\Windows\**\*.xaml" />
+    <None Include="**\Platforms\Windows\**\*.xaml" />
+  </ItemGroup>
+  
+  <!--
+  <ItemGroup Condition=" '$(_MauiTargetPlatformIsmacOS)' != 'True' ">
+    <Compile Remove="**\*.Mac.cs" />
+    <None Include="**\*.Mac.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+    <Compile Remove="**\Mac\**\*.cs" />
+    <None Include="**\Mac\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+  </ItemGroup>
+  -->
+
+  <ItemGroup>
+    <Compile Remove="Handlers\TabbedContainerView\TabbedContainerViewHandler.Standard.cs" />
   </ItemGroup>  
   
 	<ItemGroup>

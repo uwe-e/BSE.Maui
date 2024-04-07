@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BSE.Maui.Samples.Views.BottomView"
+             BackgroundColor="LightBlue">
+    <VerticalStackLayout>
+        <Label 
+            Text="Welcome to teh .NET MAUI BottomView!"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+    </VerticalStackLayout>
+</ContentView>
