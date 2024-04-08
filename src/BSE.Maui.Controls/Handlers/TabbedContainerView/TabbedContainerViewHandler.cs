@@ -26,7 +26,7 @@ namespace BSE.Maui.Controls.Handlers
                 [nameof(TabbedContainer.BarBackgroundColor)] = MapBarBackgroundColor,
                 [nameof(TabbedContainer.UnselectedTabColor)] = MapUnselectedTabColor,
                 [nameof(TabbedContainer.SelectedTabColor)] = MapSelectedTabColor,
-                [nameof(BSE.Maui.Controls.Platforms.AndroidSpecific.TabbedContainerPage.IsSwipePagingEnabledProperty.PropertyName)] = MapIsSwipePagingEnabled
+                [nameof(BSE.Maui.Controls.PlatformConfiguration.AndroidSpecific.TabbedContainerPage.IsSwipePagingEnabledProperty.PropertyName)] = MapIsSwipePagingEnabled
 #endif
             };
 

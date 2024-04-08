@@ -5,7 +5,7 @@ using Android.Views;
 using Android.Widget;
 using AndroidX.Fragment.App;
 using AndroidX.ViewPager2.Widget;
-using BSE.Maui.Controls.Platforms.AndroidSpecific;
+using BSE.Maui.Controls.PlatformConfiguration.AndroidSpecific;
 using Google.Android.Material.BottomNavigation;
 using Google.Android.Material.Navigation;
 using Microsoft.Maui.Controls.Platform;
