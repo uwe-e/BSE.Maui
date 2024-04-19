@@ -5,7 +5,7 @@
              BackgroundColor="LightBlue">
     <VerticalStackLayout>
         <Label 
-            Text="Welcome to teh .NET MAUI BottomView!"
+            Text="Welcome to the .NET MAUI BottomView!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
     </VerticalStackLayout>

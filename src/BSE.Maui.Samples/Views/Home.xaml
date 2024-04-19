@@ -30,6 +30,16 @@
             SemanticProperties.Hint="Counts the number of times you click"
             Clicked="OnCounterClicked"
             HorizontalOptions="Fill" />
+
+            <Image Source="dotnet_bot.png"
+                   HeightRequest="185"
+                   Aspect="AspectFit"
+                   SemanticProperties.Description="dot net bot in a race car number eight" />
+
+            <Image Source="dotnet_bot.png"
+                   HeightRequest="182"
+                   Aspect="AspectFit"
+                   SemanticProperties.Description="same height as the bottomview" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
