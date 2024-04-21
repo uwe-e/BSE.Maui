@@ -30,7 +30,7 @@
     </NavigationPage>
 
     <bse:TabbedContainerPage.BottomView>
-        <views:BottomView HeightRequest="100"/>
+        <views:BottomView HeightRequest="90"/>
     </bse:TabbedContainerPage.BottomView>
 
 </bse:TabbedContainerPage>

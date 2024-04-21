@@ -86,7 +86,7 @@ namespace BSE.Maui.Controls.Platforms
         {
             if (Element is not null)
             {
-
+                _viewPager.LayoutChange -= OnLayoutChanged;
             }
 
             Element = (TabbedContainerPage)element;
@@ -112,10 +112,10 @@ namespace BSE.Maui.Controls.Platforms
 
                 _viewPager = new ViewPager2(_mauiContext.Context)
                 {
-                    OverScrollMode = OverScrollMode.Never,
-                    LayoutParameters = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent)
+                    OverScrollMode = OverScrollMode.Always
                 };
                 _viewPager.RegisterOnPageChangeCallback(_listeners);
+                _viewPager.LayoutChange += OnLayoutChanged;
                 _viewPager.Adapter = new MultiPageFragmentStateAdapter<Page>((MultiPage<Page>)element, FragmentManager, _mauiContext)
                 {
                     CountOverride = ((MultiPage<Page>)element).Children.Count
@@ -132,16 +132,13 @@ namespace BSE.Maui.Controls.Platforms
             }
         }
 
+        private void OnLayoutChanged(object sender, AView.LayoutChangeEventArgs e)
+        {
+            Element.Arrange(e);
+        }
+
         private void OnChildrenCollectionChanged(object value, NotifyCollectionChangedEventArgs notifyCollectionChangedEventArgs)
         {
-
-            //ViewPager2 pager = _viewPager;
-
-            //if (pager.Adapter is MultiPageFragmentStateAdapter<Page> adapter)
-            //{
-            //    adapter.CountOverride = Element.Children.Count;
-            //}
-
             BottomNavigationView bottomNavigationView = _bottomNavigationView;
 
             if (Element.Children.Count == 0)
@@ -169,10 +166,20 @@ namespace BSE.Maui.Controls.Platforms
             if (view != null)
             {
                 int viewHeight = (view.Height == -1) ? LayoutParams.WrapContent : view.Height;
+                
                 var layoutParams = new RelativeLayout.LayoutParams(LayoutParams.MatchParent, viewHeight);
                 layoutParams.AddRule(LayoutRules.Above, _bottomNavigationView.Id);
-
+                view.Id = Resource.Id.fragment_container;
+                
                 AddView(view, layoutParams);
+
+                /*
+                 * Sets the viewpager's new relationship. This is neccesary so that we're able
+                 * to scoll to the end of the long page
+                 */
+                var viewPagerParams = (RelativeLayout.LayoutParams)_viewPager.LayoutParameters;
+                viewPagerParams.AddRule(LayoutRules.Above, view.Id);
+                _viewPager.LayoutParameters = viewPagerParams;
             }
         }
 
