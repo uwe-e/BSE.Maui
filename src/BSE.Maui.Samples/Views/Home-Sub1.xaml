@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BSE.Maui.Samples.Views.Home_Sub1"
-             Title="Home_Sub1">
+             Title="Home_Sub1" BackgroundColor="Orange">
     <VerticalStackLayout>
         <Label 
             Text="Welcome to .NET MAUI!"
