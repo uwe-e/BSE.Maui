@@ -49,6 +49,10 @@
 		<MauiImage Include="Resources\Images\*" />
 		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
     <MauiImage Update="Resources\Images\home.svg" Resize="True" BaseSize="32,32" />
+    <MauiImage Update="Resources\Images\play.svg" Resize="True" BaseSize="32,32" />
+    <MauiImage Update="Resources\Images\play_forward.svg" Resize="True" BaseSize="32,32" />
+    <MauiImage Update="Resources\Images\play_forward_sharp.svg" Resize="True" BaseSize="32,32" />
+    <MauiImage Update="Resources\Images\play_sharp.svg" Resize="True" BaseSize="32,32" />
     <MauiImage Update="Resources\Images\playlist.svg" Resize="True" BaseSize="32,32" />
     <MauiImage Update="Resources\Images\settings.svg" Resize="True" BaseSize="32,32" />
 
@@ -60,8 +64,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\cover.jpg" />
 	  <None Remove="Resources\Images\home.svg" />
+	  <None Remove="Resources\Images\play.svg" />
 	  <None Remove="Resources\Images\playlist.svg" />
+	  <None Remove="Resources\Images\play_forward.svg" />
+	  <None Remove="Resources\Images\play_forward_sharp.svg" />
+	  <None Remove="Resources\Images\play_sharp.svg" />
 	  <None Remove="Resources\Images\settings.svg" />
 	</ItemGroup>
 
@@ -86,6 +95,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\BottomView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Home-Sub1.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Home.xaml">

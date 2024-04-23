@@ -6,9 +6,9 @@
                          x:Class="BSE.Maui.Samples.Pages.TabbedPage.MainPage"
                          xmlns:android="clr-namespace:BSE.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=BSE.Maui.Controls"
                          android:TabbedContainerPage.IsSwipePagingEnabled="False"
-                         BarBackgroundColor="Orange"
-                         SelectedTabColor="Red"
-                         UnselectedTabColor="Blue"
+                         BarBackgroundColor="{StaticResource Primary}"
+                         SelectedTabColor="{StaticResource White}"
+                         UnselectedTabColor="{StaticResource Gray400}"
                          Title="TabbedPage">
 
     <NavigationPage Title="Home" IconImageSource="home.png">
@@ -30,7 +30,7 @@
     </NavigationPage>
 
     <bse:TabbedContainerPage.BottomView>
-        <views:BottomView HeightRequest="90"/>
+        <views:BottomView HeightRequest="{OnPlatform 250, iOS=90, Android=200}"/>
     </bse:TabbedContainerPage.BottomView>
 
 </bse:TabbedContainerPage>

@@ -2,11 +2,25 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BSE.Maui.Samples.Views.BottomView"
-             BackgroundColor="LightBlue">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to the .NET MAUI BottomView!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             BackgroundColor="{StaticResource Primary}">
+
+    <Border Margin="10" BackgroundColor="{StaticResource White}" >
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="{OnPlatform 15, iOS=15, Android=10}" />
+        </Border.StrokeShape>
+        <Grid Padding="5" ColumnSpacing="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="32"/>
+                <ColumnDefinition Width="32"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0" Source="cover.jpg" WidthRequest="50"/>
+            <Label Grid.Column="1" TextColor="{StaticResource Black}" FontAttributes="Bold" VerticalTextAlignment="Center" Text="Movin' on up"/>
+            <ImageButton Grid.Column="2" Source="play.png" Aspect="AspectFit"/>
+            <ImageButton Grid.Column="3" Source="play_forward.png" Aspect="AspectFit"/>
+        </Grid>
+    </Border>
+
+
 </ContentView>

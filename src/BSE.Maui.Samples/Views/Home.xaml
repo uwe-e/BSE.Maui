@@ -24,13 +24,14 @@
             SemanticProperties.HeadingLevel="Level2"
             SemanticProperties.Description="Welcome to dot net Multi platform App U I" />
 
-            <Button
-            x:Name="CounterBtn"
-            Text="Click me" 
-            SemanticProperties.Hint="Counts the number of times you click"
-            Clicked="OnCounterClicked"
-            HorizontalOptions="Fill" />
+            <Button x:Name="CounterBtn"
+                    Text="Click me" 
+                    SemanticProperties.Hint="Counts the number of times you click"
+                    Clicked="OnCounterClicked"
+                    HorizontalOptions="Fill" />
 
+            <Button Text="Navigate To Sub" Clicked="OnNavigationClicked" HorizontalOptions="Fill"/>
+            
             <Image Source="dotnet_bot.png"
                    HeightRequest="185"
                    Aspect="AspectFit"

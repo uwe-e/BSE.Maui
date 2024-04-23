@@ -21,15 +21,10 @@
   
    <PropertyGroup>
 		<_MauiTargetPlatformIdentifier>$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)'))</_MauiTargetPlatformIdentifier>
-     <!--<_MauiTargetPlatformIsAndroid>false</_MauiTargetPlatformIsAndroid>-->
      <_MauiTargetPlatformIsAndroid Condition="'$(_MauiTargetPlatformIdentifier)' == 'android'">True</_MauiTargetPlatformIsAndroid>
-     <!--<_MauiTargetPlatformIsAndroid>false</_MauiTargetPlatformIsAndroid>-->
      <_MauiTargetPlatformIsiOS Condition="'$(_MauiTargetPlatformIdentifier)' == 'ios'">True</_MauiTargetPlatformIsiOS>
-     <!--<_MauiTargetPlatformIsMacCatalyst>false</_MauiTargetPlatformIsMacCatalyst>-->
      <_MauiTargetPlatformIsMacCatalyst Condition="'$(_MauiTargetPlatformIdentifier)' == 'maccatalyst'">True</_MauiTargetPlatformIsMacCatalyst>
-     
      <_MauiTargetPlatformIsmacOS Condition="'$(_MauiTargetPlatformIdentifier)' == 'macos'">True</_MauiTargetPlatformIsmacOS>
-     <!--<_MauiTargetPlatformIsWindows>false</_MauiTargetPlatformIsWindows>-->
      <_MauiTargetPlatformIsWindows Condition="'$(_MauiTargetPlatformIdentifier)' == 'windows'">True</_MauiTargetPlatformIsWindows>
   </PropertyGroup>
 
@@ -62,15 +57,6 @@
     <MauiXaml Remove="**\Platforms\Windows\**\*.xaml" />
     <None Include="**\Platforms\Windows\**\*.xaml" />
   </ItemGroup>
-  
-  <!--
-  <ItemGroup Condition=" '$(_MauiTargetPlatformIsmacOS)' != 'True' ">
-    <Compile Remove="**\*.Mac.cs" />
-    <None Include="**\*.Mac.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
-    <Compile Remove="**\Mac\**\*.cs" />
-    <None Include="**\Mac\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
-  </ItemGroup>
-  -->
 
   <ItemGroup>
     <Compile Remove="Handlers\TabbedContainerView\TabbedContainerViewHandler.Standard.cs" />
