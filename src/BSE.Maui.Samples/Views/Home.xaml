@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:bse="clr-namespace:BSE.Maui.Controls;assembly=BSE.Maui.Controls"
+             xmlns:bsebehaviors="clr-namespace:BSE.Maui.Controls.Behaviours;assembly=BSE.Maui.Controls"
              x:Class="BSE.Maui.Samples.Views.Home"
              Title="Home">
     <ScrollView>
@@ -29,7 +31,11 @@
                     Text="Click me" 
                     SemanticProperties.Hint="Counts the number of times you click"
                     Clicked="OnCounterClicked"
-                    HorizontalOptions="Fill" />
+                    HorizontalOptions="Fill">
+                <Button.Behaviors>
+                    <bsebehaviors:HorizontalContentAlignmentBehaviour HorizontalContentAlignment="Start"/>
+                </Button.Behaviors>
+            </Button>
 
             <Button Text="Navigate To Sub" Clicked="OnNavigationClicked" HorizontalOptions="Fill"/>
             
