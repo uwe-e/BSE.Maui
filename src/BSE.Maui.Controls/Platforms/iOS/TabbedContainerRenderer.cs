@@ -15,8 +15,8 @@ namespace BSE.Maui.Controls.Platforms.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-
-            UIApplication.SharedApplication.BeginReceivingRemoteControlEvents();
+            //Moved to BSE.Tunes.MediaExtensions
+            //UIApplication.SharedApplication.BeginReceivingRemoteControlEvents();
         }
 
         public override void ViewDidLayoutSubviews()
