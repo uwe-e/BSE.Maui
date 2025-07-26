@@ -12,13 +12,6 @@ namespace BSE.Maui.Controls.Platforms.iOS
 
         TabbedContainerPage Page => Element as TabbedContainerPage;
 
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
-            //Moved to BSE.Tunes.MediaExtensions
-            //UIApplication.SharedApplication.BeginReceivingRemoteControlEvents();
-        }
-
         public override void ViewDidLayoutSubviews()
         {
             base.ViewDidLayoutSubviews();
