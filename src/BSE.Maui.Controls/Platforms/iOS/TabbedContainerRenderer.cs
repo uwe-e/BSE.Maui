@@ -65,6 +65,24 @@ namespace BSE.Maui.Controls.Platforms.iOS
             _bottomView?.RemoteControlReceived(theEvent);
         }
 
+        public override void ViewDidAppear(bool animated)
+        {
+            base.ViewDidAppear(animated);
+
+            // Only attempt if not already created
+            if (_bottomView == null && Page != null)
+            {
+                try
+                {
+                    SetupUserInterface();
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine($"\t\t\tERROR(SetupUserInterface in ViewDidAppear): {ex}");
+                }
+            }
+        }
+
         protected override void OnElementChanged(VisualElementChangedEventArgs e)
         {
             base.OnElementChanged(e);
@@ -75,6 +93,8 @@ namespace BSE.Maui.Controls.Platforms.iOS
             }
             try
             {
+                // Keep the call here for non-MediaElement cases, but the real creation
+                // for MediaElement may be deferred until ViewDidAppear abov
                 SetupUserInterface();
             }
             catch (Exception exception)
@@ -91,13 +111,94 @@ namespace BSE.Maui.Controls.Platforms.iOS
                 if (mauiContext != null)
                 {
                     var height = view.Height;
-                    _bottomView = view.ToPlatform(mauiContext);
-                    _bottomView.Frame = new System.Drawing.RectangleF(
-                        0,
-                        0,
-                        (float)View.Frame.Width,
-                        (float)view.Height);
-                    View.AddSubview(_bottomView);
+
+                    // Create a scoped IMauiContext that provides the current UIViewController and UIWindow.
+                    // Some platform controls (MediaElement) inspect IMauiContext.Context or request UIWindow/UIViewController
+                    // from Services during handler creation. Provide both to avoid "current view controller cannot be detected".
+                    var scopedContext = new MauiContextWithViewControllerAndWindow(mauiContext, this);
+
+                    try
+                    {
+                        _bottomView = view.ToPlatform(scopedContext);
+                        _bottomView.Frame = new System.Drawing.RectangleF(
+                            0,
+                            0,
+                            (float)View.Frame.Width,
+                            (float)view.Height);
+                        View.AddSubview(_bottomView);
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Diagnostics.Debug.WriteLine($"\t\t\tERROR(SetupUserInterface in SetupUserInterface): {ex}");
+                        throw;
+                    }
+                }
+            }
+        }
+
+        // Scoped IMauiContext wrapper that returns the provided UIViewController and UIWindow from Services
+        // and exposes the UIWindow (or fallback to UIViewController) as Context. This covers lookup patterns
+        // used by various platform controls (including MediaElement).
+        private sealed class MauiContextWithViewControllerAndWindow : IMauiContext
+        {
+            readonly IMauiContext _inner;
+            readonly UIViewController _viewController;
+            readonly IServiceProvider _services;
+
+            public MauiContextWithViewControllerAndWindow(IMauiContext inner, UIViewController viewController)
+            {
+                _inner = inner ?? throw new ArgumentNullException(nameof(inner));
+                _viewController = viewController ?? throw new ArgumentNullException(nameof(viewController));
+                _services = new ViewControllerWindowServiceProvider(inner.Services, _viewController);
+            }
+
+            // Some platform code expects IMauiContext.Context to be a UIWindow/UIView — prefer the window.
+            public object Context
+            {
+                get
+                {
+                    try
+                    {
+                        var window = _viewController?.View?.Window;
+                        if (window != null)
+                            return window;
+                    }
+                    catch { /* ignore */ }
+
+                    return _viewController;
+                }
+            }
+
+            public IServiceProvider Services => _services;
+
+            public IMauiHandlersFactory Handlers => _inner.Handlers;
+
+            private sealed class ViewControllerWindowServiceProvider : IServiceProvider
+            {
+                readonly IServiceProvider _inner;
+                readonly UIViewController _vc;
+
+                public ViewControllerWindowServiceProvider(IServiceProvider inner, UIViewController vc)
+                {
+                    _inner = inner;
+                    _vc = vc;
+                }
+
+                public object GetService(Type serviceType)
+                {
+                    if (serviceType == typeof(UIViewController) || typeof(UIViewController).IsAssignableFrom(serviceType))
+                        return _vc;
+
+                    if (serviceType == typeof(UIWindow) || typeof(UIWindow).IsAssignableFrom(serviceType))
+                    {
+                        try
+                        {
+                            return _vc?.View?.Window;
+                        }
+                        catch { return null; }
+                    }
+
+                    return _inner.GetService(serviceType);
                 }
             }
         }

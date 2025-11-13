@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="BSE.Maui.Samples.Views.BottomView"
              BackgroundColor="{StaticResource Primary}">
 
@@ -15,6 +16,11 @@
                 <ColumnDefinition Width="32"/>
                 <ColumnDefinition Width="32"/>
             </Grid.ColumnDefinitions>
+            <toolkit:MediaElement Source="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                                  ShouldAutoPlay="False"
+                                  ShouldShowPlaybackControls="True"
+                                  HeightRequest="0"
+                                  WidthRequest="0"/>
             <Image Grid.Column="0" Source="cover.jpg" WidthRequest="50"/>
             <Label Grid.Column="1" TextColor="{StaticResource Black}" FontAttributes="Bold" VerticalTextAlignment="Center" Text="Movin' on up"/>
             <ImageButton Grid.Column="2" Source="play.png" Aspect="AspectFit"/>
