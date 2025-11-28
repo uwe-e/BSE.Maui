@@ -1,4 +1,6 @@
 ﻿using BSE.Maui.Controls;
+using CommunityToolkit.Maui;
+
 using Microsoft.Extensions.Logging;
 
 namespace BSE.Maui.Samples
@@ -10,6 +12,7 @@ namespace BSE.Maui.Samples
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkitMediaElement()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
