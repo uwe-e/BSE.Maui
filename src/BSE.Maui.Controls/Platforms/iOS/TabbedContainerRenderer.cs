@@ -129,7 +129,7 @@ namespace BSE.Maui.Controls.Platforms.iOS
                     }
                     catch (Exception ex)
                     {
-                        System.Diagnostics.Debug.WriteLine($"\t\t\tERROR(SetupUserInterface in SetupUserInterface): {ex}");
+                        System.Diagnostics.Debug.WriteLine($"\t\t\tERROR while converting BottomView to platform view and adding as subview in SetupUserInterface: {ex}");
                         throw;
                     }
                 }
