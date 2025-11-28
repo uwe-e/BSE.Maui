@@ -19,8 +19,8 @@
             <toolkit:MediaElement Source="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
                                   ShouldAutoPlay="False"
                                   ShouldShowPlaybackControls="True"
-                                  HeightRequest="0"
-                                  WidthRequest="0"/>
+                                  HeightRequest="50"
+                                  WidthRequest="50"/>
             <Image Grid.Column="0" Source="cover.jpg" WidthRequest="50"/>
             <Label Grid.Column="1" TextColor="{StaticResource Black}" FontAttributes="Bold" VerticalTextAlignment="Center" Text="Movin' on up"/>
             <ImageButton Grid.Column="2" Source="play.png" Aspect="AspectFit"/>
