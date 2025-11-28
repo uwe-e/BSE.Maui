@@ -1,7 +1,6 @@
 ﻿using BSE.Maui.Controls;
 using CommunityToolkit.Maui;
 
-// Ensure this using directive is present
 using Microsoft.Extensions.Logging;
 
 namespace BSE.Maui.Samples
