@@ -94,7 +94,7 @@ namespace BSE.Maui.Controls.Platforms.iOS
             try
             {
                 // Keep the call here for non-MediaElement cases, but the real creation
-                // for MediaElement may be deferred until ViewDidAppear abov
+                // for MediaElement may be deferred until ViewDidAppear above
                 SetupUserInterface();
             }
             catch (Exception exception)
