@@ -93,8 +93,8 @@ namespace BSE.Maui.Controls.Platforms.iOS
             }
             try
             {
-                // Keep the call here for non-MediaElement cases, but the real creation
-                // for MediaElement may be deferred until ViewDidAppear above
+                // Attempt to create the UI here; if this fails (e.g., for MediaElement scenarios),
+                // ViewDidAppear will attempt creation as a fallback.
                 SetupUserInterface();
             }
             catch (Exception exception)
