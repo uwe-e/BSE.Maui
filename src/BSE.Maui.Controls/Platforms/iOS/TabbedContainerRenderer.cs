@@ -157,22 +157,9 @@ namespace BSE.Maui.Controls.Platforms.iOS
             {
                 get
                 {
-                    try
-                    {
-                        var window = _viewController?.View?.Window;
-                        if (window != null)
-                            return window;
-                    }
-                    catch (NullReferenceException nre)
-                    {
-                        // NullReferenceException can occur due to teardown/race conditions when accessing View or Window.
-                        System.Diagnostics.Debug.WriteLine($"NullReferenceException while accessing View.Window; falling back to UIViewController. {nre}");
-                    }
-                    catch (Exception ex)
-                    {
-                        // Log unexpected exceptions to aid debugging rather than silently swallowing them.
-                        System.Diagnostics.Debug.WriteLine($"Unexpected exception while retrieving window from view controller: {ex}");
-                    }
+                    var window = _viewController?.View?.Window;
+                    if (window != null)
+                        return window;
 
                     return _viewController;
                 }
