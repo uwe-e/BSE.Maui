@@ -195,7 +195,11 @@ namespace BSE.Maui.Controls.Platforms.iOS
                         {
                             return _vc?.View?.Window;
                         }
-                        catch { return null; }
+                        catch (Exception ex)
+                        {
+                            System.Diagnostics.Debug.WriteLine($"Exception in GetService (UIWindow): {ex}");
+                            return null;
+                        }
                     }
 
                     return _inner.GetService(serviceType);
