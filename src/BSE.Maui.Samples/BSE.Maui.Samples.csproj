@@ -38,6 +38,16 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
+  <!-- if the xcode version is up to date, you can remove this -->
+  <PropertyGroup Condition="$(TargetFramework.Contains('-ios'))">
+    <!-- these adaptions prevent exceptions caused by an unsupported Xcode 26.5 version-->
+    <MtouchLink>SdkOnly</MtouchLink>
+    <ValidateXcodeVersion>false</ValidateXcodeVersion>
+    <!-- Behebt den .NET 9 XAML-Compiler-Bug (z.B. bei Syncfusion "No parameterless constructor found") -->
+    <_MauiForceXamlCForDebug>true</_MauiForceXamlCForDebug>
+    <MtouchNoLinkSymbols>CommunityToolkit.Maui.Views.MediaElement</MtouchNoLinkSymbols>
+  </PropertyGroup>
+    
 	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
